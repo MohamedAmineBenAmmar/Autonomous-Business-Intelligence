@@ -1,0 +1,6 @@
+# Create a version file to define the migration
+alembic revision -m "create DBES table"
+then modify the migration file to add the table definition
+
+# Run the migration
+alembic upgrade head
