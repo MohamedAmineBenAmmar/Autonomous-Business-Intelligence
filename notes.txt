@@ -1,6 +1,26 @@
+# Install alembic
+pip install alembic
+
+# Create the alembic configuration file
+Go to DWH directory
+alembic init alembic
+
 # Create a version file to define the migration
 alembic revision -m "create DBES table"
 then modify the migration file to add the table definition
 
 # Run the migration
 alembic upgrade head
+
+# Using the rollback command
+alembic downgrade -1
+
+# To visualize the current revision
+alembic current
+
+# History of migrations
+alembic history
+
+# PB when to revisions have the same downgrade version (due to git branches conflicts after a merge)
+alembic merge -m "merge <head1 detected> and <head2 detected>" <head1 detected> <head2 detected>
+Note: we detect the that there is conflit by running alembic history to see if there is two revisions that have the same downgrade version

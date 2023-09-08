@@ -24,8 +24,8 @@ def upgrade() -> None:
         sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
         sa.Column("project_name", sa.String(100), nullable=False),
         sa.Column("project_type", sa.String(2), nullable=False),
-        sa.Column("facts", sa.JSON, nullable=False),
-        sa.Column("rules", sa.JSON, nullable=False),
+        sa.Column("facts", sa.String(500), nullable=False),
+        sa.Column("rules", sa.String(500), nullable=False),
     )
 
 
