@@ -1,3 +1,5 @@
+Alembic section:
+-----------------
 # Install alembic
 pip install alembic
 
@@ -24,3 +26,16 @@ alembic history
 # PB when to revisions have the same downgrade version (due to git branches conflicts after a merge)
 alembic merge -m "merge <head1 detected> and <head2 detected>" <head1 detected> <head2 detected>
 Note: we detect the that there is conflit by running alembic history to see if there is two revisions that have the same downgrade version
+-----------------
+
+Docker section:
+-----------------
+# To build the docker image for the database expert system follow these steps:
+1- from the current working directory
+2- run cd Agents/Expert_Systems/DB_Expert_System
+3- docker build -t database-expert-system .
+4- (for test docker file) docker build -f DevDockerfile -t database-expert-system .
+
+# To start the container of the database expert system (from the .../Autonomous-Business-Intelligence/Agents/Expert_Systems/DB_Expert_System)
+docker run -p 8000:8000 database-expert-system
+-----------------

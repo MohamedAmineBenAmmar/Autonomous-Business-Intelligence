@@ -1,0 +1,11 @@
+FROM python:3.8
+
+WORKDIR /DB_Expert_System
+
+COPY ./requirements.txt ./requirements.txt
+COPY ./app/database_expert_system.py ./database_expert_system.py
+
+RUN pip install -r requirements.txt
+
+
+CMD ["python", "./database_expert_system.py"]
