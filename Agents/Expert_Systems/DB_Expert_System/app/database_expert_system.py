@@ -1,10 +1,15 @@
 # This is the database expert system (DBES) module.
+imports = """
 from experta import Fact, Rule, KnowledgeEngine, AND, OR, DefFacts
+"""
 
+db_fact = """
 class Database(Fact):
-    """Info about the database."""
+    # Info about the database.
     pass
+"""
 
+rules = """
 class DatabaseSuggestion(KnowledgeEngine):
 
     # @DefFacts()
@@ -109,8 +114,25 @@ class DatabaseSuggestion(KnowledgeEngine):
     @Rule(AND(Database(type="multi-model"), Database(scale="medium"), Database(consistency="high"), Database(license="open-source")))
     def suggest_arangodb(self):
         print("We suggest using ArangoDB for your project.")
+"""
 
+engine = """
 engine = DatabaseSuggestion()
 engine.reset()
 engine.declare(Database(type="relational", scale="medium", consistency="high", license="open-source"))
 engine.run()
+
+"""
+
+if __name__ == "__main__":
+    compiled_imports = compile(imports, '<string>', 'exec')
+    compiled_db_fact = compile(db_fact, '<string>', 'exec')
+    compiled_rules = compile(rules, '<string>', 'exec')
+    compiled_engine = compile(engine, '<string>', 'exec')
+
+    print("\nadded the compile + exec tests: \n")
+    
+    exec(compiled_imports)
+    exec(compiled_db_fact)
+    exec(compiled_rules)
+    exec(compiled_engine)
